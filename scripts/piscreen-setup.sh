@@ -26,9 +26,6 @@ apt update
 echo "\n${YELL}Installing required packages via apt...${NRML}\n"
 apt install -y fbi xserver-xorg-input-evdev
 
-#apt install libts-bin evtest xinput python-dev python-pip xinput-calibrator
-#pip install evdev
-
 BOOT_CONFIG_CHANGES="dtparam=spi=on\ndtoverlay=piscreen,speed=24000000,rotate=90"
 
 EVDEV_CALIBRATION_XORG_CONF="
@@ -57,3 +54,7 @@ echo "${EVDEV_CALIBRATION_XORG_CONF}" > /etc/X11/xorg.conf.d/99-touchscreen-cali
 
 echo "\n${YELL}Enabling SPI and PiScreen in '${ORNG}/boot/config.txt${YELL}'...${NRML}\n"
 mv /usr/share/X11/xorg.conf.d/10-evdev.conf /usr/share/X11/xorg.conf.d/45-evdev.conf
+
+echo "\n${YELL}Finished! Perform a reboot with the touchscreen attached and hopefully it will be working.${NRML}"
+echo "${YELL}Consider enabling SSH in '${LBLU}sudo raspi-config${YELL}' and make note of the IP address to${NRML}"
+echo "${YELL}connect to using '${LBLU}ipconfig${YELL}'${NRML}.\n"
